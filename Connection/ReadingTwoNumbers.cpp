@@ -6,21 +6,22 @@ int main() {
     int M;
     int *array;
     int *array2;
-    int str = 0,index=0;
+    int index=0;
 
     setlocale(LC_ALL, "Russian");
     std::fstream fileIn("in.txt");  
-
-    if (fileIn) {
-        while (0==str) {
-            fileIn >> N;
-            str++;
-          if (fileIn.eof()) {
-            break;
-          }           
-        }
+    
+    if (!fileIn) {
+        std::cout << "Файл не открыт" << std::endl;
+        return-1;
     }
-    str = 0;
+    else
+    {
+        std::cout << "Все ОК! Файл открыт In.txt!" << std::endl;
+    }
+
+    fileIn >> N;   
+
     array = new int[N];   
   
     if (fileIn) {
@@ -33,15 +34,8 @@ int main() {
         }
     }
     index = 0;
-    if (fileIn) {
-        while (0==str) {
-            fileIn >> M;
-            str++;
-            if (fileIn.eof()) {
-                break;
-            }
-        }
-    }
+
+    fileIn >> M;    
 
     array2 = new int[M];
     if (fileIn) {
@@ -56,6 +50,14 @@ int main() {
     fileIn.close();
   
     std::ofstream fileOut("out.txt");
+    if (!fileOut) {
+        std::cout << "Файл не открыт" << std::endl;
+        return-1;
+    }
+    else
+    {
+        std::cout << "Все ОК! Файл открыт Out.txt!" << std::endl;
+    }
 
     fileOut << M;
     fileOut << std::endl;
